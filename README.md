@@ -1,6 +1,6 @@
 <h1>RecipeList</h1>
 <div>
-  <h2>Developed using</h2>
+  <h2>Developed Using</h2>
   <ul>
     <li>Swift programming language</li>
     <li>Xcode environment</li>
