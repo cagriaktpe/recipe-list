@@ -12,24 +12,36 @@ struct RecipeListView: View {
     
     var body: some View {
         NavigationView {
-            List(model.recipes) { recipe in
-                NavigationLink {
-                    RecipeDetailView(recipe: recipe)
-                } label: {
-                    // MARK: Row item
-                    HStack(spacing: 20.0) {
-                        Image(recipe.image)
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: 50, height: 50, alignment: .center)
-                            .clipped()
-                            .cornerRadius(5)
-                        
-                        Text(recipe.name)
+            VStack(alignment: .leading) {
+                Text("All Recipes")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .padding(.top, 40)
+                
+                ScrollView {
+                    LazyVStack(alignment: .leading) {
+                        ForEach(model.recipes) { recipe in
+                            NavigationLink {
+                                RecipeDetailView(recipe: recipe)
+                            } label: {
+                                // MARK: Row item
+                                HStack(spacing: 20.0) {
+                                    Image(recipe.image)
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(width: 50, height: 50, alignment: .center)
+                                        .clipped()
+                                        .cornerRadius(5)
+                                    
+                                    Text(recipe.name)
+                                        .foregroundColor(.black)
+                                }
+                            }
+                        }
                     }
                 }
             }
-            .navigationTitle("All recipes")
+            .padding(.leading)
         }
         
         
@@ -39,5 +51,6 @@ struct RecipeListView: View {
 struct RecipeListView_Previews: PreviewProvider {
     static var previews: some View {
         RecipeListView()
+            .environmentObject(RecipeModel())
     }
 }
