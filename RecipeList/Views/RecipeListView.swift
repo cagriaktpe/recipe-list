@@ -9,6 +9,7 @@ import SwiftUI
 
 struct RecipeListView: View {
     @EnvironmentObject var model:RecipeModel
+    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         NavigationView {
@@ -34,7 +35,7 @@ struct RecipeListView: View {
                                         .cornerRadius(5)
                                     
                                     Text(recipe.name)
-                                        .foregroundColor(.black)
+                                        .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
                                 }
                             }
                         }
